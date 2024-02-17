@@ -1,0 +1,21 @@
+# Node modules
+/node_modules/
+
+# Build output
+/build/
+/dist/
+
+# IDE a editor specifika
+/.idea/
+*.swp
+*.swo
+.vscode/
+
+# Log soubory
+*.log
+
+# Systémové soubory
+.DS_Store
+
+# Složky specifické pro Spring Boot
+/target/
