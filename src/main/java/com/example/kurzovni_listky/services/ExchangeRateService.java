@@ -24,6 +24,9 @@ public class ExchangeRateService {
         this.restTemplate = restTemplate;
     }
 
+    public ExchangeRate getExchangeRateByShortName(String shortName) {
+        return exchangeRateRepo.findByShortName(shortName);
+    }
     public List<ExchangeRate> getAllExchangeRates() {
         return exchangeRateRepo.findAll();
     }

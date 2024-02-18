@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface ExchangeRateRepo extends JpaRepository<ExchangeRate, Long> {
     List<ExchangeRate> findByShortNameAndValidFrom(String shortName, LocalDateTime validFrom);
+    ExchangeRate findByShortName(String shortName);
 }
