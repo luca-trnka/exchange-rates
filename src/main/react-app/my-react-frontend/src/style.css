@@ -83,3 +83,10 @@ a:hover {
 .button-back:hover {
     background-color: #005B6E;
 }
+
+.last-updated {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #666;
+    font-style: italic;
+}

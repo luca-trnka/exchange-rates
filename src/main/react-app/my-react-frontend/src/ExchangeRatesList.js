@@ -4,14 +4,7 @@ import { displayValue } from './formatUtils'
 
 const ExchangeRatesList = () => {
     const [rates, setRates] = useState([]);
-
-    // verze pro extrakci dat z externího API:
-    // useEffect(() => {
-    //     fetch('https://webapi.developers.erstegroup.com/api/csas/public/sandbox/v2/rates/exchangerates?web-api-key=c52a0682-4806-4903-828f-6cc66508329e')
-    //         .then(response => response.json())
-    //         .then(data => setRates(data))
-    //         .catch(error => console.error('Chyba při získávání dat:', error));
-    // }, []);
+    const [lastUpdated, setLastUpdated] = useState("");
 
     useEffect(() => {
         fetch('http://localhost:8080/api/exchange-rates?usedb=false')
@@ -19,6 +12,11 @@ const ExchangeRatesList = () => {
             .then(data => {
                 const sortedData = data.sort((a, b) => a.shortName.localeCompare(b.shortName)); //seřadí měny podle abecedy
                 setRates(sortedData);
+                if (sortedData.length > 0) {
+                    // budu předpokládat, že všechny záznamy mají stejný čas aktualizace
+                    const lastUpdate = new Date(sortedData[0].validFrom).toLocaleString();
+                    setLastUpdated(`Naposledy aktualizováno: ${lastUpdate}`);
+                }
             })
             .catch(error => console.error('Chyba při získávání dat:', error));
     }, []);
@@ -26,6 +24,7 @@ const ExchangeRatesList = () => {
     return (
         <div className="container">
             <h1>Kurzovní lístek</h1>
+            <p className="last-updated">{lastUpdated}</p>
             <table className="table-list">
                 <thead>
                 <tr>

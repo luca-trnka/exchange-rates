@@ -8,17 +8,6 @@ const ExchangeRateDetail = () => {
     const [rateDetail, setRateDetail] = useState(null);
     const navigate = useNavigate();
 
-    // verze pro extrakci dat z externího API:
-    // useEffect(() => {
-    //     fetch(`https://webapi.developers.erstegroup.com/api/csas/public/sandbox/v2/rates/exchangerates?web-api-key=c52a0682-4806-4903-828f-6cc66508329e`)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             const detail = data.find(rate => rate.shortName === shortName);
-    //             setRateDetail(detail);
-    //         })
-    //         .catch(error => console.error('Chyba při získávání detailu:', error));
-    // }, [shortName]);
-
 
     useEffect(() => {
         fetch(`http://localhost:8080/api/exchange-rates/detail/${shortName}`)
